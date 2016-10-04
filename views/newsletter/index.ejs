@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>newsletters</title>
+  <link rel="stylesheet" href="">
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+    </ul>
+  </nav>
+</header>
+
+<h1>Add a New newsletter</h1>
+
+  <form action="/newsletter/new" method="post">
+    <label for="">Name: </label>
+      <input type="text" name="name"><br>
+    <label for="">Month: </label>
+      <input type="text" name="month"><br>
+    <label for="">Day: </label>
+     <input type="text" name="day"><br>
+    <label for="">Year: </label>
+      <input type="text" name="year"><br>
+    <label for="">Number of Articles: </label>
+      <input type="text" name="num_of_articles"><br>
+    <label for="">Litmus Code: </label>
+      <input type="text" name="litmus_code"><br>
+
+    <input type="submit" value="Add newsletter">
+  </form>
+
+<h2>List of All newsletters</h2>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Month</th>
+      <th>Day</th>
+      <th>Year</th>
+    </tr>
+
+    <% newsletters.forEach( newsletter => { %>
+    <tr>
+      <td>
+        <a href="/newsletter/<%= newsletter.newsletter_id %>">
+          <%= newsletter.name %>
+        </a>
+      </td>
+      <td> <%= newsletter.month %></td>
+      <td> <%= newsletter.day %></td>
+      <td> <%= newsletter.year %></td>
+    </tr>
+    <% }); %>
+
+  </table>
+
+</body>
+</html>

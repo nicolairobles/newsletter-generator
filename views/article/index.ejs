@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>articles</title>
+  <link rel="stylesheet" href="">
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+
+
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="/">Articles</a></li>
+    </ul>
+  </nav>
+</header>
+<h1>Add a New article</h1>
+
+
+<form action="/article/new" method="post">
+  <label for="">Title: </label>
+    <input type="text" name="title"><br>
+  <label for="">Description: </label>
+    <input type="text" name="description"><br>
+  <label for="">Article url: </label>
+    <input type="text" name="article_url"><br>
+  <label for="">Icon url: </label>
+    <input type="text" name="icon_url"><br>
+  <label for="">Category tag: </label>
+    <input type="text" name="category_tag"><br>
+  <label for="">Newsletter id: </label>
+    <input type="text" name="newsletter_id"><br>
+  <label for="">Color id: </label>
+    <input type="text" name="color_id"><br>
+  <input type="submit" value="Add article">
+</form>
+
+<h2>List of All articles</h2>
+  <table>
+    <tr>
+      <th>Newsletter ID</th>
+      <th>Category</th>
+      <th>Title</th>
+    </tr>
+
+    <% articles.forEach( article => { %>
+    <tr>
+      <td>
+        <a href="/article/<%= article.article_id %>">
+          <%= article.newsletter_id %>
+        </a>
+      </td>
+      <td> <%= article.category_tag %></td>
+      <td> <%= article.title %></td>
+    </tr>
+    <% }); %>
+
+  </table>
+
+</body>
+</html>

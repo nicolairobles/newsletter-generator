@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>article Profile</title>
+  <link rel="stylesheet" href="">
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+
+
+<body>
+  <header>
+    <h1>article Profile</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/article">article's Page</a></li>
+        </ul>
+      </nav>
+  </header>
+
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>Newsletter id</td>
+      <td> <%= article.newsletter_id %></td>
+    </tr>
+    <tr>
+      <td>Category tag</td>
+      <td> <%= article.category_tag %></td>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td> <%= article.title %></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td> <%= article.description %></td>
+    </tr>
+    <tr>
+      <td>Article url</td>
+      <td> <%= article.article_url %></td>
+    </tr>
+    <tr>
+      <td>Icon url</td>
+      <td> <%= article.icon_url %></td>
+    </tr>
+    <tr>
+      <td>Color</td>
+      <td> <%= article.color_id %></td>
+    </tr>
+  </table>
+
+  <form method="post" action="/article/<%=article.article_id%>?_method=PUT">
+    <label for="">Title: </label>
+      <input type="text" name="title"><br>
+    <label for="">Description: </label>
+      <input type="text" name="description"><br>
+    <label for="">Article url: </label>
+      <input type="text" name="article_url"><br>
+    <label for="">Icon url: </label>
+      <input type="text" name="icon_url"><br>
+    <label for="">Category tag: </label>
+      <input type="text" name="category_tag"><br>
+    <label for="">Newsletter id: </label>
+      <input type="text" name="newsletter_id"><br>
+    <label for="">Color id: </label>
+      <input type="text" name="color_id"><br>
+    <input type="submit" value="Edit article">
+  </form>
+
+  <br>
+
+  <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
+    <input type="submit" value="Delete article">
+  </form>
+
+</body>
+</html>

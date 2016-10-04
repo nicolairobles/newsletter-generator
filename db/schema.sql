@@ -1,9 +1,45 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS newsletters CASCADE;
+DROP TABLE IF EXISTS colors CASCADE;
+DROP TABLE IF EXISTS article_types CASCADE;
+DROP TABLE IF EXISTS articles CASCADE;
 
-CREATE TABLE users (
-  user_id SERIAL PRIMARY KEY NOT NULL,
-  first_name VARCHAR NOT NULL,
-  last_name VARCHAR NOT NULL,
-  age INT NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT now()
+
+CREATE TABLE newsletters (
+	newsletter_id SERIAL PRIMARY KEY NOT NULL,
+	name VARCHAR NOT NULL,
+	month VARCHAR NOT NULL,
+	day INT NOT NULL,
+	year INT NOT NULL,
+	num_of_articles INT NOT NULL,
+	litmus_code TEXT NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT now()
+);
+
+
+CREATE TABLE colors (
+	color_id SERIAL PRIMARY KEY NOT NULL,
+	color_name VARCHAR NOT NULL,
+	hex_code VARCHAR NOT NULL
+);
+
+
+CREATE TABLE article_types (
+	article_type_id SERIAL PRIMARY KEY NOT NULL,
+	article_type_name VARCHAR NOT NULL
+);
+
+
+CREATE TABLE articles (
+	article_id SERIAL PRIMARY KEY NOT NULL,
+	article_type INT REFERENCES article_types(article_type_id),
+	title VARCHAR(2000) NOT NULL,
+	description VARCHAR(2000) NOT NULL,
+	article_url VARCHAR(2000) NOT NULL,
+	icon_url VARCHAR(2000) NOT NULL,
+	category_tag VARCHAR NOT NULL,
+	newsletter_id INT REFERENCES newsletters(newsletter_id),
+	color_id INT REFERENCES colors(color_id)
+	cta VARCHAR(2000) NOT NULL,
+	event_date VARCHAR(2000) NOT NULL,
+	event_time VARCHAR(2000) NOT NULL,
 );
