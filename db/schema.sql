@@ -38,8 +38,8 @@ CREATE TABLE articles (
 	icon_url VARCHAR(2000) NOT NULL,
 	category_tag VARCHAR NOT NULL,
 	newsletter_id INT REFERENCES newsletters(newsletter_id),
-	color_id INT REFERENCES colors(color_id)
+	color_id INT REFERENCES colors(color_id),
 	cta VARCHAR(2000) NOT NULL,
 	event_date VARCHAR(2000) NOT NULL,
-	event_time VARCHAR(2000) NOT NULL,
+	event_time VARCHAR(2000) NOT NULL
 );

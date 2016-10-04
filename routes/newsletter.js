@@ -1,6 +1,8 @@
+const pry = require('pryjs');
+
 const router          = require('express').Router();
 const { 
-	getAllNewsletters, getNewsletterArticles, addNewsletter, updateNewsletter, deleteNewsletter
+	getAllNewsletters, getNewsletterDetails, addNewsletter, updateNewsletter, deleteNewsletter
   }  = require('../db/db');
 
 
@@ -20,8 +22,13 @@ router.post('/new', addNewsletter, (req,res) => {
 // });
 
 // Show newsletter's articles and details
-router.get('/:id', getNewsletterArticles, (req,res) => {
-  res.render('newsletter/show', {newsletter_articles: res.rows});
+router.get('/:id', getNewsletterDetails, (req,res) => {
+  res.render('newsletter/show', {
+  	newsletter_details: res.details,
+  	lead_article: res.lead_article,
+  	non_lead_articles: res.non_lead_articles,
+  	event: res.event
+  });
 });
 
 // // Edit newsletter

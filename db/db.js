@@ -231,6 +231,65 @@ function getAllNewsletters(req,res,next) {
 
 
 // CUSTOM QUERY TO GET ALL ARTICLES IN GIVEN NEWSLETTER
+function getNewsletterDetails(req,res,next) {
+  db.task(task=> {
+    return task.batch([
+      task.one(`SELECT *
+        FROM newsletters
+        WHERE newsletter_id=$1`, [req.params.id]),
+      task.one(`SELECT articles.*  
+        FROM newsletters 
+        JOIN articles 
+        ON newsletters.newsletter_id = articles.newsletter_id  
+        JOIN colors
+        ON colors.color_id = articles.color_id
+        WHERE newsletters.newsletter_id=$1 
+        AND articles.article_type=1;`, [req.params.id]),
+      task.any(`SELECT articles.*  
+        FROM newsletters 
+        JOIN articles 
+        ON newsletters.newsletter_id = articles.newsletter_id  
+        JOIN colors
+        ON colors.color_id = articles.color_id
+        WHERE newsletters.newsletter_id=$1 
+        AND articles.article_type=2;`, [req.params.id]),
+      task.one(`SELECT articles.*  
+        FROM newsletters 
+        JOIN articles 
+        ON newsletters.newsletter_id = articles.newsletter_id  
+        JOIN colors
+        ON colors.color_id = articles.color_id
+        WHERE newsletters.newsletter_id=$1 
+        AND articles.article_type=3;`, [req.params.id])
+    ]);
+  })
+  .then(data=> {
+    res.details = data[0];
+    res.lead_article = data[1];
+    res.non_lead_articles = data[2];
+    res.event = data[3];
+    next();
+  })
+  .catch(error=> {
+      console.log('Error ', error);
+  });
+
+    // newsletter_details: res.details,........one
+    // lead_articles: res.lead_articles,.........any
+    // non_lead_articles: res.non_lead_articles,......any
+    // event: res.event.......one
+
+}
+
+
+
+
+
+
+
+
+
+
 function getNewsletterArticles(req,res,next) {
   db.any(`SELECT *  
     FROM newsletters 
@@ -398,4 +457,4 @@ function deleteNewsletter(req,res,next) {
 
 // newsletters, colors, articles
 
-module.exports = { getAllNewsletters, getNewsletterArticles, addNewsletter, updateNewsletter, deleteNewsletter, getAllColors, getColor, addColor, updateColor, deleteColor, getAllArticles, getArticle, addArticle, updateArticle, deleteArticle };
+module.exports = { getAllNewsletters, getNewsletterDetails, addNewsletter, updateNewsletter, deleteNewsletter, getAllColors, getColor, addColor, updateColor, deleteColor, getAllArticles, getArticle, addArticle, updateArticle, deleteArticle };

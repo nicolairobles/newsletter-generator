@@ -1,6 +1,7 @@
 const express        = require('express');
 const logger         = require('morgan');
 const path           = require('path');
+const pry 			 = require('pryjs');
 const methodOverride = require('method-override');
 const bodyParser     = require('body-parser');
 const newsletterRoute      = require('./routes/newsletter');
