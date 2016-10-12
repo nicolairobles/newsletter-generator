@@ -10,7 +10,6 @@ CREATE TABLE newsletters (
 	month VARCHAR NOT NULL,
 	day INT NOT NULL,
 	year INT NOT NULL,
-	num_of_articles INT NOT NULL,
 	litmus_code TEXT NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT now()
 );
@@ -34,12 +33,13 @@ CREATE TABLE articles (
 	article_type INT REFERENCES article_types(article_type_id),
 	title VARCHAR(2000) NOT NULL,
 	description VARCHAR(2000) NOT NULL,
-	article_url VARCHAR(2000) NOT NULL,
-	icon_url VARCHAR(2000) NOT NULL,
-	category_tag VARCHAR NOT NULL,
+	article_url VARCHAR(2000),
+	icon_url VARCHAR(2000),
+	category_tag VARCHAR,
 	newsletter_id INT REFERENCES newsletters(newsletter_id),
 	color_id INT REFERENCES colors(color_id),
-	cta VARCHAR(2000) NOT NULL,
-	event_date VARCHAR(2000) NOT NULL,
-	event_time VARCHAR(2000) NOT NULL
+	cta VARCHAR(2000),
+	event_date VARCHAR(2000),
+	event_time VARCHAR(2000),
+	position INT NOT NULL
 );

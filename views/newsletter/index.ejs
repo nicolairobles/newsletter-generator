@@ -39,12 +39,10 @@
       <input type="text" name="name"><br>
     <label for="">Month: </label>
       <input type="text" name="month"><br>
-    <label for="">Day: </label>
+    <label for="">Day: (number)</label>
      <input type="text" name="day"><br>
-    <label for="">Year: </label>
+    <label for="">Year: (number)</label>
       <input type="text" name="year"><br>
-    <label for="">Number of Articles: </label>
-      <input type="text" name="num_of_articles"><br>
     <label for="">Litmus Code: </label>
       <input type="text" name="litmus_code"><br>
 
@@ -64,9 +62,13 @@
     <% newsletters.forEach( newsletter => { %>
     <tr>
       <td>
-        <a href="/newsletter/<%= newsletter.newsletter_id %>">
           <%= newsletter.name %>
-        </a>
+        <form method="get" action="/newsletter/<%=newsletter.newsletter_id%>/edit?_method=GET">
+          <input type="submit" value="Edit newsletter">
+        </form>
+        <form method="post" action="/newsletter/<%=newsletter.newsletter_id%>?_method=DELETE">
+          <input type="submit" value="Delete newsletter">
+        </form>
       </td>
       <td> <%= newsletter.month %></td>
       <td> <%= newsletter.day %></td>

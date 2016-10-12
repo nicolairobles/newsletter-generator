@@ -11,7 +11,7 @@ router.get('/', getAllArticles, (req,res) => {
 
 // Post route to add new article
 router.post('/new', addArticle, (req,res) => {
-  res.redirect('/article');
+  res.redirect('back');
 });
 
 
@@ -27,7 +27,7 @@ router.put('/:id', updateArticle, (req,res) => {
 
 // Delete article
 router.delete('/:id', deleteArticle, (req,res) => {
- res.redirect('/article');
+ res.redirect('back');
 })
 
 

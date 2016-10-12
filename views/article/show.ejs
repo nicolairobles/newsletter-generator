@@ -27,73 +27,107 @@
 
 <body>
   <header>
-    <h1>article Profile</h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/article">article's Page</a></li>
+          <li><a href="/newsletter/<%= article.newsletter_id %>/edit">Back to Newsletter</a></li>
         </ul>
       </nav>
   </header>
 
+    <h1>Article Details</h1>
+<!-- <h2>List of All Articles in Newsletter</h2> -->
   <table>
     <tr>
-      <th></th>
-      <th></th>
+      <th>Position</th>
+      <th>Title</th>
+      <th>Article Type</th>
+      <th>Description</th>
+      <th>Category Tag</th>
+      <th>Color</th>
+      <th>CTA</th>
+      <th>Event Date</th>
+      <th>Event Time</th>
+      <th>Actions</th>
     </tr>
-    <tr>
-      <td>Newsletter id</td>
-      <td> <%= article.newsletter_id %></td>
-    </tr>
-    <tr>
-      <td>Category tag</td>
-      <td> <%= article.category_tag %></td>
-    </tr>
-    <tr>
-      <td>Title</td>
-      <td> <%= article.title %></td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td> <%= article.description %></td>
-    </tr>
-    <tr>
-      <td>Article url</td>
-      <td> <%= article.article_url %></td>
-    </tr>
-    <tr>
-      <td>Icon url</td>
-      <td> <%= article.icon_url %></td>
-    </tr>
-    <tr>
-      <td>Color</td>
-      <td> <%= article.color_id %></td>
-    </tr>
+
+      <tr>
+        <td> <%= article.position %></td>
+
+        <td> 
+          <a href="/article/<%= article.article_id %>">
+            <%= article.title %>
+          </a>
+        </td>
+
+        <td> <%= article.article_type_name %></td>
+        <td> <%= article.description %></td>
+        <td> <%= article.category_tag %></td>
+        <td> <%= article.color_name %></td>
+        <td> <%= article.cta %></td>
+        <td> <%= article.event_date %></td>
+        <td> <%= article.event_time %></td>
+
+        <td>
+          <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
+            <input type="submit" value="Delete Article">
+          </form>
+          <form method="get" action="/article/<%=article.article_id%>?_method=GET">
+            <input type="submit" value="Edit Article">
+          </form>
+        </td>
+
+      </tr>
+
+
   </table>
 
   <form method="post" action="/article/<%=article.article_id%>?_method=PUT">
-    <label for="">Title: </label>
-      <input type="text" name="title"><br>
-    <label for="">Description: </label>
-      <input type="text" name="description"><br>
-    <label for="">Article url: </label>
-      <input type="text" name="article_url"><br>
-    <label for="">Icon url: </label>
-      <input type="text" name="icon_url"><br>
-    <label for="">Category tag: </label>
-      <input type="text" name="category_tag"><br>
-    <label for="">Newsletter id: </label>
-      <input type="text" name="newsletter_id"><br>
-    <label for="">Color id: </label>
-      <input type="text" name="color_id"><br>
-    <input type="submit" value="Edit article">
+    <h2>Edit Article Details: </h2><br>
+    <select name="article_type">
+      <option value="1">Article Type</option>
+      <option value="1">Lead Article</option>
+      <option value="2">Non-lead Article</option>
+      <option value="3">Event</option>
+    </select><br>
+  <!-- <label for="">Article Title: </label> -->
+    <input type="text" name="title" value="Article Title"><br>
+  <!-- <label for="">Description: </label> -->
+    <!-- <input type="text" name="description" value="Description"><br> -->
+    <textarea name="description" value="Description">Description</textarea><br>
+  <!-- <label for="">Article url: </label> -->
+    <input type="text" name="article_url" value="Article url"><br>
+  <!-- <label for="">Icon url: </label> -->
+    <input type="text" name="icon_url" value="Icon url"><br>
+  <!-- <label for="">Category tag: </label> -->
+    <input type="text" name="category_tag" value="Category Tag"><br>
+<!--   <label for="">Newsletter id: </label>
+    <input type="text" name="newsletter_id"><br> -->
+  <input type="hidden" name="newsletter_id" value="3">
+  <!-- <label for="">Color: </label> -->
+    <select name="color_id">
+      <option value="1">Color</option>
+      <option value="1">Nielsen Orange</option>
+      <option value="2">Nielsen Purple</option>
+      <option value="3">Nielsen Green</option>
+      <option value="4">Nielsen Blue</option>
+      <option value="5">Nielsen Red</option>
+    </select><br>
+  <input type="text" name="cta" value="Call to Action"><br>
+  <input type="text" name="position" value="Place in template (number)"><br>
+    
+    <br>
+  <h2>Edit Event Details</h2><br>
+  <input type="text" name="event_date" value="Event Date (if applicable)"><br>
+  <input type="text" name="event_time" value="Event Time (if applicable)"><br>
+    <input type="submit" value="Submit Edits">
   </form>
 
   <br>
 
-  <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
+<!--   <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
     <input type="submit" value="Delete article">
-  </form>
+  </form> -->
 
 </body>
 </html>

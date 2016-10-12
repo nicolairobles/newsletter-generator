@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>newsletter Profile</title>
+  <link rel="stylesheet" href="">
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+
+
+<body>
+  <header>
+    <h1>Newsletter: "<%= newsletter.name %>"</h1>
+    <h4>created at: <%= newsletter.created_at %></h4>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/newsletter">All Newsletters</a></li>
+          <li><a href="/newsletter/<%= newsletter.newsletter_id %>/newswire">Newswire Preview</a></li>
+          <li><a href="/newsletter/<%= newsletter.newsletter_id %>/newscenter">News Center Preview</a></li>
+        </ul>
+      </nav>
+  </header>
+
+<h2>List of All Articles in Newsletter</h2>
+  <table>
+    <tr>
+      <th>Position</th>
+      <th>Title</th>
+      <th>Article Type</th>
+      <th>Description</th>
+      <th>Category Tag</th>
+      <th>Color</th>
+      <th>CTA</th>
+      <th>Event Date</th>
+      <th>Event Time</th>
+      <th>Actions</th>
+    </tr>
+
+    <% articles.forEach( article => { %>
+      <tr>
+        <td> <%= article.position %></td>
+
+        <td> 
+          <a href="/article/<%= article.article_id %>">
+            <%= article.title %>
+          </a>
+        </td>
+
+        <td> <%= article.article_type_name %></td>
+        <td> <%= article.description %></td>
+        <td> <%= article.category_tag %></td>
+        <td> <%= article.color_name %></td>
+        <td> <%= article.cta %></td>
+        <td> <%= article.event_date %></td>
+        <td> <%= article.event_time %></td>
+
+        <td>
+          <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
+            <input type="submit" value="Delete Article">
+          </form>
+          <form method="get" action="/article/<%=article.article_id%>?_method=GET">
+            <input type="submit" value="Edit Article">
+          </form>
+        </td>
+
+      </tr>
+
+    <% }); %>
+
+  </table>
+
+
+
+  <h2 href="#">Add a New article</h2>
+
+
+<form action="/article/new" method="post">
+  <label for="">Article Details: </label><br>
+    <select name="article_type">
+      <option value="">Article Type</option>
+      <option value="1">Lead Article</option>
+      <option value="2">Non-lead Article</option>
+      <option value="3">Event</option>
+    </select><br>
+  <!-- <label for="">Article Title: </label> -->
+    <input type="text" name="title" placeholder="Article Title"><br>
+  <!-- <label for="">Description: </label> -->
+    <!-- <input type="text" name="description" placeholder="Description"><br> -->
+    <textarea name="description" placeholder="Description"></textarea><br>
+  <!-- <label for="">Article url: </label> -->
+    <input type="text" name="article_url" placeholder="Article url"><br>
+  <!-- <label for="">Icon url: </label> -->
+    <input type="text" name="icon_url" placeholder="Icon or Image url"><br>
+  <!-- <label for="">Category tag: </label> -->
+    <input type="text" name="category_tag" placeholder="Category Tag"><br>
+<!--   <label for="">Newsletter id: </label>
+    <input type="text" name="newsletter_id"><br> -->
+  <input type="hidden" name="newsletter_id" value="<%= newsletter.newsletter_id %>">
+  <!-- <label for="">Color: </label> -->
+    <select name="color_id">
+      <option value="">Color</option>
+      <option value="1">Nielsen Orange</option>
+      <option value="2">Nielsen Purple</option>
+      <option value="3">Nielsen Green</option>
+      <option value="4">Nielsen Blue</option>
+      <option value="5">Nielsen Red</option>
+    </select><br>
+  <input type="text" name="cta" placeholder="Call to Action"><br>
+  <input type="text" name="position" placeholder="Place in template (number)"><br>
+    
+    <br>
+  <label for="">Event Details</label><br>
+  <input type="text" name="event_date" placeholder="Event Date (if applicable)"><br>
+  <input type="text" name="event_time" placeholder="Event Time (if applicable)"><br>
+
+  <input type="submit" value="Add article">
+</form>
+
+
+<h1>Newsletter Details</h1>
+  <table>
+    <tr>
+      <th>Data Point</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Newsletter Name</td>
+      <td> <%= newsletter.name %></td>
+    </tr>
+    <tr>
+      <td>Month</td>
+      <td> <%= newsletter.month %></td>
+    </tr>
+    <tr>
+      <td>Day</td>
+      <td> <%= newsletter.day %></td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td> <%= newsletter.year %></td>
+    </tr>
+    <tr>
+      <td>Litmus Code</td>
+      <td> <%= newsletter.litmus_code %></td>
+    </tr>
+  </table>
+
+
+<h2>Edit Newsletter Details</h2>
+  <form method="post" action="/newsletter/<%=newsletter.newsletter_id%>?_method=PUT">
+    <!-- <label for="">Name: </label> -->
+      <input type="text" name="name" placeholder="Name of Newsletter: <%= newsletter.name %>"><br>
+    <!-- <label for="">Month: </label> -->
+      <input type="text" name="month" placeholder="Month: <%= newsletter.month %>"><br>
+    <!-- <label for="">Day: </label> -->
+      <input type="text" name="day" placeholder="Day: <%= newsletter.day %>"><br>
+    <!-- <label for="">Year: </label> -->
+      <input type="text" name="year" placeholder="Year: <%= newsletter.year %>"><br>
+    <!-- <label for="">Litmus Code: </label> -->
+      <input type="text" name="litmus_code" placeholder="Litmus Code: <%= newsletter.litmus_code %>"><br>
+
+    <input type="submit" value="Edit newsletter">
+  </form>
+
+  <br>
+
+  <form method="post" action="/newsletter/<%=newsletter.newsletter_id%>?_method=DELETE">
+    <input type="submit" value="Delete newsletter">
+  </form>
+
+
+
+
+
+
+</body>
+</html>

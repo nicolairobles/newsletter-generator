@@ -37,20 +37,44 @@
 
 
 <form action="/article/new" method="post">
-  <label for="">Title: </label>
-    <input type="text" name="title"><br>
-  <label for="">Description: </label>
-    <input type="text" name="description"><br>
-  <label for="">Article url: </label>
-    <input type="text" name="article_url"><br>
-  <label for="">Icon url: </label>
-    <input type="text" name="icon_url"><br>
-  <label for="">Category tag: </label>
-    <input type="text" name="category_tag"><br>
-  <label for="">Newsletter id: </label>
-    <input type="text" name="newsletter_id"><br>
-  <label for="">Color id: </label>
-    <input type="text" name="color_id"><br>
+  <label for="">Article Details: </label><br>
+    <select name="article_type">
+      <option value="">Article Type</option>
+      <option value="1">Lead Article</option>
+      <option value="2">Non-lead Article</option>
+      <option value="3">Event</option>
+    </select><br>
+  <!-- <label for="">Article Title: </label> -->
+    <input type="text" name="title" placeholder="Article Title"><br>
+  <!-- <label for="">Description: </label> -->
+    <!-- <input type="text" name="description" placeholder="Description"><br> -->
+    <textarea name="description" placeholder="Description"></textarea><br>
+  <!-- <label for="">Article url: </label> -->
+    <input type="text" name="article_url" placeholder="Article url"><br>
+  <!-- <label for="">Icon url: </label> -->
+    <input type="text" name="icon_url" placeholder="Icon url"><br>
+  <!-- <label for="">Category tag: </label> -->
+    <input type="text" name="category_tag" placeholder="Category Tag"><br>
+<!--   <label for="">Newsletter id: </label>
+    <input type="text" name="newsletter_id"><br> -->
+  <input type="hidden" name="newsletter_id" value="3">
+  <!-- <label for="">Color: </label> -->
+    <select name="color_id">
+      <option value="">Color</option>
+      <option value="1">Nielsen Orange</option>
+      <option value="2">Nielsen Purple</option>
+      <option value="3">Nielsen Green</option>
+      <option value="4">Nielsen Blue</option>
+      <option value="5">Nielsen Red</option>
+    </select><br>
+  <input type="text" name="cta" placeholder="Call to Action"><br>
+  <input type="text" name="position" placeholder="Place in template (number)"><br>
+    
+    <br>
+  <label for="">Event Details</label><br>
+  <input type="text" name="event_date" placeholder="Event Date (if applicable)"><br>
+  <input type="text" name="event_time" placeholder="Event Time (if applicable)"><br>
+
   <input type="submit" value="Add article">
 </form>
 
@@ -58,19 +82,24 @@
   <table>
     <tr>
       <th>Newsletter ID</th>
-      <th>Category</th>
+      <th>Position in Newsletter</th>
       <th>Title</th>
     </tr>
 
     <% articles.forEach( article => { %>
     <tr>
-      <td>
-        <a href="/article/<%= article.article_id %>">
-          <%= article.newsletter_id %>
-        </a>
+      <td><%= article.newsletter_id %>
+        
+  <form method="post" action="/article/<%=article.article_id%>?_method=DELETE">
+    <input type="submit" value="Delete Article">
+  </form>
+
       </td>
-      <td> <%= article.category_tag %></td>
-      <td> <%= article.title %></td>
+      <td> <%= article.position %></td>
+
+      <td> <a href="/article/<%= article.article_id %>">
+          <%= article.title %>
+        </a></td>
     </tr>
     <% }); %>
 

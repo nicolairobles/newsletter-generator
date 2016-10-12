@@ -940,16 +940,15 @@ body {
     
     <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" class="TableWidth" >
         <tr>
-            <td valign="top" style="padding-left:20px; padding-top:0px; padding-right:20px; padding-bottom:0px;"><font class="SubHeadline CellWidthMiddle" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:17.5pt;line-height:22pt; color:#009dd9;"><a href="http://www.nielsen.com/us/en/insights/news/2016/choice-cuts-consumers-have-nearly-unlimited-content-options-but-how-many-do-they-use.html" style="color:#009dd9; text-decoration:none;"><%= lead_article.title %></a></font><br />
-            <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:13pt;line-height:17pt; color:#666666;"><%= lead_article.description %></font></td>
+            <td valign="top" style="padding-left:20px; padding-top:0px; padding-right:20px; padding-bottom:0px;"><font class="SubHeadline CellWidthMiddle" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:17.5pt;line-height:22pt; color:#009dd9;"><a href="<%= lead_article[0].article_url %>" style="color:#009dd9; text-decoration:none;"><%= lead_article[0].title %></a></font><br />
+            <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:13pt;line-height:17pt; color:#666666;"><%= lead_article[0].description %></font></td>
         </tr>
-        <%console.log(lead_article.title)%>
         <tr>
           <td valign="top" style="padding-left:20px; padding-top:20px; padding-right:20px; padding-bottom:0px;"><!--button-->
             
             <table class="TableWidthBut"  align="left" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <td class="ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP:5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="http://www.nielsen.com/us/en/insights/news/2016/choice-cuts-consumers-have-nearly-unlimited-content-options-but-how-many-do-they-use.html" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%= lead_article.cta %> ></a></font></td>
+                <td class="ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP:5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%= lead_article[0].article_url %>" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%= lead_article[0].cta %> ></a></font></td>
               </tr>
             </table>
             
@@ -960,7 +959,7 @@ body {
       
       
       </td>
-      <td valign="top" class="hide" style="padding-left:0px; padding-top:0px; padding-right:24px; padding-bottom:0px;"><a href="http://www.nielsen.com/us/en/insights/news/2016/choice-cuts-consumers-have-nearly-unlimited-content-options-but-how-many-do-they-use.html" style="color:#ffffff; text-decoration:none;"><img class="DisplayImage hideIcon" hspace="0" style="margin-bottom: 0px; margin-top:0px;" src="http://www.nielsen.com<%= lead_article.icon_url %>" align="right" width="130" height="130" border="0" alt="icon" /></a></td>
+      <td valign="top" class="hide" style="padding-left:0px; padding-top:0px; padding-right:24px; padding-bottom:0px;"><a href="<%= lead_article[0].article_url %>" style="color:#ffffff; text-decoration:none;"><img class="DisplayImage hideIcon" hspace="0" style="margin-bottom: 0px; margin-top:0px;" src="http://www.nielsen.com<%= lead_article[0].icon_url %>" align="right" width="130" height="130" border="0" alt="icon" /></a></td>
   </tr>
 </table></td></tr></table></td></tr></table></td>
         </tr>
@@ -977,16 +976,12 @@ body {
 
 <!-- BEGINS ITERATION OVER ALL ARTICLES IN GIVEN NEWSLETTER -->
 
+    <%  i = 0 %>
     <% non_lead_articles.forEach( non_lead_article => { %>
-
-<!-- 
-        <a href="/non_lead_article/<%= non_lead_article.non_lead_article_id %>">
-          <%= non_lead_article.non_lead_article_id %>
-        </a>
-      <td> <%= non_lead_article.category_tag %></td>
-      <td> <%= non_lead_article.title %></td>
-
- -->
+    
+        <!-- iterator to count through each article included in newsletter -->
+        <%  i =  i + 1 %>
+        <% console.log(i + ": " + non_lead_article.title) %>
 
 
 
@@ -1027,34 +1022,36 @@ body {
    
    
    
-   <!--SECTION TITLE 2 START-->
+   <!--SECTION TITLE <%= i %> START-->
   <tr>
     <td bgcolor="#FFFFFF" ><table width="580" border="0" cellpadding="0" cellspacing="0" class="TableWidth ">
         <tr>
           <td class="CellWidthMiddle" align="left" valign="top" bgcolor="#ffffff"><table cellpadding="0" cellspacing="0" border="0" bordercolor="" width="100%" bgcolor=""><tr><td><table  width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0"><tr><td style="font-family:Arial; font-size:13px"><table bgcolor="#ffffff" border="0" align="left" cellpadding="0" cellspacing="0">
   <tr>
     <td bgcolor="#ffffff" style="padding-left:20px; padding-top:0px; padding-right:20px; padding-bottom:0px;" class="SectionTitle"><font class="SectionTitle" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:12pt;line-height:15pt; color:#000000;"><%= non_lead_article.category_tag %></font></td>
+        
+
   </tr>
   </table></td></tr></table></td></tr></table></td>
         </tr>
       </table></td>
   </tr>
-  <!--SECTION TITLE 2 END--> 
-  <!--ARTICLE 2 START-->
+  <!--SECTION TITLE <%= i %> END--> 
+  <!--ARTICLE <%= i %> START-->
     <tr>
     <td bgcolor="#FFFFFF" align="center"><table border="0" cellpadding="0" cellspacing="0"  width="580"  class="TableWidth">
         <tr>
           <td class="CellWidthLeft hideIcon MobCellWidthLeft" width="90" height="70" align="left" valign="top" bgcolor="#ffffff"><table cellpadding="0" cellspacing="0" border="0" bordercolor="" width="100%" bgcolor=""><tr><td><table  width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0"><tr><td style="font-family:Arial; font-size:13px"><table align="left" border="0" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
-            <td style="padding: 11px 0px 17px 18px;"><a href="http://www.nielsen.com/us/en/insights/news/2016/uncommon-sense-the-modern-innovation-dilemma-first-mover-or-best-mover.html" style="color:#ffffff; text-decoration:none;"><img width="65" height="65" align="left" class="icon" alt="icon" src="http://www.nielsen.com<%= non_lead_article.icon_url %>" border="0" hspace="0" /></a></td>
+            <td style="padding: 11px 0px 17px 18px;"><a href="<%= non_lead_article.article_url %>" style="color:#ffffff; text-decoration:none;"><img width="65" height="65" align="left" class="icon" alt="icon" src="http://www.nielsen.com<%= non_lead_article.icon_url %>" border="0" hspace="0" /></a></td>
         </tr>
           
     </tbody>
 </table></td></tr></table></td></tr></table></td>
           <td align="right" class="CellWidthRight MobCellWidthRight" width="490" bgcolor="#ffffff"><table cellpadding="0" cellspacing="0" border="0" bordercolor="" width="100%" bgcolor=""><tr><td><table  width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0"><tr><td style="font-family:Arial; font-size:13px"><table bgcolor="#ffffff" border="0" align="left" cellpadding="0" cellspacing="0">
   <tr>
-      <td class="LeftPad" style="padding-left:11px; padding-top:11px; padding-right:20px; padding-bottom:19px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:14pt; line-height:16pt; color:<%= non_lead_article.color_id %>;"><a href="<%= non_lead_article.article_url %>" style="color:<%= non_lead_article.color_id %>; text-decoration:none;"><%= non_lead_article.title %></a></font><br />
+      <td class="LeftPad" style="padding-left:11px; padding-top:11px; padding-right:20px; padding-bottom:19px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:14pt; line-height:16pt; color:<%= non_lead_article.hex_code %>;"><a href="<%= non_lead_article.article_url %>" style="color:<%= non_lead_article.hex_code %>; text-decoration:none;"><%= non_lead_article.title %></a></font><br />
       <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:13pt;line-height:17pt; color:#666666;"><%= non_lead_article.description %></font> 
      </td>
   </tr>
@@ -1063,7 +1060,7 @@ body {
       
       <table class="TableWidthBut" align="left" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%= non_lead_article.article_url %>" class="cta" style="COLOR: #ffffff; text-decoration: none;">Read more ></a>
+          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%= non_lead_article.article_url %>" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%=non_lead_article.cta%> ></a>
 </font></td>
         </tr>
       </table>
@@ -1074,7 +1071,7 @@ body {
         </tr>
       </table></td>
   </tr>  
-  <!--ARTICLE 2 END--> 
+  <!--ARTICLE <%= i %> END--> 
 
    
    
@@ -1125,25 +1122,27 @@ body {
           <td class="CellWidthLeft hideIcon MobCellWidthLeft" width="90" height="70" align="left" valign="top" bgcolor="#eff0f1"><table cellpadding="0" cellspacing="0" border="0" bordercolor="" width="100%" bgcolor=""><tr><td><table  width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0"><tr><td style="font-family:Arial; font-size:13px"><table align="left" border="0" cellspacing="0" cellpadding="0">
  
   <tbody><tr>
-      <td style="padding: 11px 0px 17px 18px;"><a href="http://www.nielsen.com/us/en/insights/webinars/2016/putting-a-premium-on-innovation.html" style="color:#ffffff; text-decoration:none;"><img width="65" height="65" align="left" class="icon" alt="icon" src="http://www.nielsen.com/content/dam/nielsenglobal/global/images/icons/65x65/blue/calendar-blue-65x65.png" border="0" hspace="0"></a></td>
+      <td style="padding: 11px 0px 17px 18px;"><a href="<%= event[0].article_url %>" style="color:#ffffff; text-decoration:none;"><img width="65" height="65" align="left" class="icon" alt="icon" src="http://www.nielsen.com/content/dam/nielsenglobal/global/images/icons/65x65/blue/calendar-blue-65x65.png" border="0" hspace="0"></a></td>
   </tr>  
   
 </tbody></table></td></tr></table></td></tr></table></td>
           <td align="right" class="CellWidthRight MobCellWidthRight" width="490" bgcolor="#eff0f1"><table cellpadding="0" cellspacing="0" border="0" bordercolor="" width="100%" bgcolor=""><tr><td><table  width="100%" bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0"><tr><td style="font-family:Arial; font-size:13px"><table bgcolor="#eff0f1" border="0" align="left" cellpadding="0" cellspacing="0">
   <tr>
-      <td bgcolor="#eff0f1" class="LeftPad" style="padding-left:11px; padding-top:11px; padding-right:20px; padding-bottom:19px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:14pt;line-height:16pt; color:#009dd9;"><a href="http://www.nielsen.com/us/en/insights/webinars/2016/putting-a-premium-on-innovation.html" style="color:#009dd9; text-decoration:none;">RECENT WEBINAR: Putting a Premium on Innovation - Best Practices for Launching Pricier Products</a></font> 
-       <!-- <br><br> -->
+      <td bgcolor="#eff0f1" class="LeftPad" style="padding-left:11px; padding-top:11px; padding-right:20px; padding-bottom:19px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:14pt;line-height:16pt; color:#009dd9;"><a href="<%= event[0].article_url %>" style="color:#009dd9; text-decoration:none;"><%= event[0].title %></a></font> 
+       <br><br>
       <!-- <br /> -->
       <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:13pt;line-height:17pt; color:#666666;">
-<!--        <b>Date: </b>Wednesday, Sept. 21, 2016<br>
-        <b>Time: </b>12:00 PM EDT<br>
- -->    <!-- <b>Duration: </b>1 hour<br> -->
+       <b>Date: </b><%= event[0].event_date %><br>
+        <b>Time: </b><%= event[0].event_time %><br>
+    <!-- <b>Duration: </b>1 hour<br> -->
     
-    <p>Addressing an unmet consumer need is an absolute necessity of innovation, but it's also just the beginning. For a premium initiative to succeed, the final product has to delight the consumer and create a rich story that elevates the product to a more holistic "experience."</p>
-<!--         <ul>
-            <li>Identify potential partners</li>
-            <li>Develop effective partnerships with an entertainment franchise</li>
-            <li>Grow brand favorability and become a hero to consumers</li>
+    <p><%= event[0].description %></p>
+<!--     <p>In this webinar you'll learn:</p>
+        <ul>
+            <li>How consumers are engaging digitally along their path to purchase
+</li>
+            <li>Tips to guide your thinking about digital channels as growth drivers in both the manufacturing and retailing world</li>
+            <li>Predictions on the future of digital retail</li>
         </ul> -->
      </font></td>
   </tr>
@@ -1152,7 +1151,7 @@ body {
       
    <table class="TableWidthBut" align="left" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="http://www.nielsen.com/us/en/insights/webinars/2016/putting-a-premium-on-innovation.html" class="cta" style="COLOR: #ffffff; text-decoration: none;">Watch now ></a>
+          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%= event[0].article_url %>" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%= event[0].cta %> ></a>
 </font></td>
         </tr>
       </table>
@@ -1279,7 +1278,6 @@ Copyright © 2016 The Nielsen Company. All Rights Reserved.<br>
 </td> 
 </tr> 
 </table>
-<style data-ignore-inlining>@media print{ #_t { background-image: url('https://m2qlbo1o.emltrk.com/m2qlbo1o?p&d=%%emailaddr%%');}} div.OutlookMessageHeader {background-image:url('https://m2qlbo1o.emltrk.com/m2qlbo1o?f&d=%%emailaddr%%')} table.moz-email-headers-table {background-image:url('https://m2qlbo1o.emltrk.com/m2qlbo1o?f&d=%%emailaddr%%')} blockquote #_t {background-image:url('https://m2qlbo1o.emltrk.com/m2qlbo1o?f&d=%%emailaddr%%')} #MailContainerBody #_t {background-image:url('https://m2qlbo1o.emltrk.com/m2qlbo1o?f&d=%%emailaddr%%')}</style><div id="_t"></div>
-<img src="https://m2qlbo1o.emltrk.com/m2qlbo1o?d=%%emailaddr%%" width="1" height="1" border="0" />
+<style data-ignore-inlining>@media print{ #_t { background-image: url('https://<%=newsletter_details.litmus_code%>.emltrk.com/<%=newsletter_details.litmus_code%>?p&d=%%emailaddr%%');}} div.OutlookMessageHeader {background-image:url('https://<%=newsletter_details.litmus_code%>.emltrk.com/<%=newsletter_details.litmus_code%>?f&d=%%emailaddr%%')} table.moz-email-headers-table {background-image:url('https://<%=newsletter_details.litmus_code%>.emltrk.com/a<%=newsletter_details.litmus_code%>?f&d=%%emailaddr%%')} blockquote #_t {background-image:url('https://<%=newsletter_details.litmus_code%>.emltrk.com/<%=newsletter_details.litmus_code%>?f&d=%%emailaddr%%')} #MailContainerBody #_t {background-image:url('https://<%=newsletter_details.litmus_code%>.emltrk.com/<%=newsletter_details.litmus_code%>?f&d=%%emailaddr%%')}</style><div id="_t"></div> <img src="https://<%=newsletter_details.litmus_code%>.emltrk.com/<%=newsletter_details.litmus_code%>?d=%%emailaddr%%" width="1" height="1" border="0" />
 </body>
 </html>
