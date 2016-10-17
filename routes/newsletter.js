@@ -30,7 +30,7 @@ router.post('/new', addNewsletter, (req,res) => {
 
 // Show newsletter's articles and details
 router.get('/:id/newswire', getNewsletterDetails, (req,res) => {
-  res.set({ 'content-type': 'application/json; charset=utf-8' })
+  // res.set({ 'content-type': 'application/json; charset=utf-8' })
   res.render('newsletter/newswire', {
   	newsletter_details: res.details,
   	lead_article: res.lead_article,

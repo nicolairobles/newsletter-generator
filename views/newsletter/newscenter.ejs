@@ -1044,7 +1044,7 @@ body {
                     <tr>
                       <td style="font-family:Arial; font-size:13px"><table align="left" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td style="padding: 0px 20px;"><font style="color: #666666; font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11.5pt; line-height: 14pt; font-weight: normal;"> September 2016</font></td>
+                            <td style="padding: 0px 20px;"><font style="color: #666666; font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 11.5pt; line-height: 14pt; font-weight: normal;"> <% newsletter_details.month %> <% newsletter_details.year %></font></td>
                           </tr>
                         </table></td>
                     </tr>
@@ -1091,7 +1091,7 @@ body {
                               <td valign="top" style="padding-top: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 27px;"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" class="TableWidth">
                                   <tr>
                                       <td class="RightPad" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 19px;">
-                                          <font class="SubHeadline" style="font-size: 15pt; line-height: 19pt; font-family: Calibri, Arial, Helvetica, sans-serif; color: #009dd9; font-weight: normal; text-align: left;"> <a href="http://sites.nielsen.com/newscenter/nielsen-data-is-the-difference/" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><%=lead_article[0].title %></a> </font> </td></tr>
+                                          <font class="SubHeadline" style="font-size: 15pt; line-height: 19pt; font-family: Calibri, Arial, Helvetica, sans-serif; color: #009dd9; font-weight: normal; text-align: left;"> <a href="<%= lead_article[0].article_url %>" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><%=lead_article[0].title %></a> </font> </td></tr>
 
 
 <!-- INSERT IMAGE IF EXISTS -->
@@ -1100,10 +1100,11 @@ body {
         <% console.log("No Image Url"); %>
     <% } else { %>
         <% console.log("Image url: " + lead_article[0].icon_url) %>
+        <% console.log("Image url: " + lead_article[0].article_url) %>
 
                                   <tr>
                                       <td class="RightPad" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 19px;">    
-                                      <a href="http://sites.nielsen.com/newscenter/nielsen-data-is-the-difference/" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><img src="http://www.nielsen.com/<%=lead_article[0].icon_url %>" width="540" alt="Nielsen Marketing Cloud" /></a>
+                                      <a href="<%= lead_article[0].article_url %>" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><img src="http://www.nielsen.com/<%=lead_article[0].icon_url %>" width="540" alt="Nielsen Marketing Cloud" /></a>
                                       </td>
                                   </tr>
 
@@ -1126,7 +1127,7 @@ body {
                                       
                                       <table class="TableWidthBut" align="left" border="0" cellpadding="0" cellspacing="0">
                                         <tr>
-                                          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="http://sites.nielsen.com/newscenter/nielsen-data-is-the-difference/" class="cta" target="_blank" style="COLOR: #ffffff; text-decoration: none;"><%=lead_article[0].cta %> ></a></font></td>
+                                          <td class="CellWidthMiddle ButtonCenter" style="PADDING-BOTTOM:5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; PADDING-TOP: 5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%= lead_article[0].article_url %>" class="cta" target="_blank" style="COLOR: #ffffff; text-decoration: none;"><%=lead_article[0].cta %> ></a></font></td>
                                         </tr>
                                       </table>
                                       
@@ -1188,14 +1189,14 @@ body {
                           <tr>
                             <td valign="top" align="left"><table bgcolor="#eff0f1" border="0" align="left" cellpadding="0" cellspacing="0" class="TableWidth">
                               <tr>
-                                <td bgcolor="#eff0f1" class="LeftPad" style="padding-left:20px; padding-top:0px; padding-right:15px; padding-bottom:15px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:400; text-align:left; font-size:14pt;line-height:16pt; color:#009dd9;"><a href="http://sites.nielsen.com/newscenter/tapping-into-todays-digitally-engaged-grocery-shopper/" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><%=non_lead_article.title %></a></font> <br />
+                                <td bgcolor="#eff0f1" class="LeftPad" style="padding-left:20px; padding-top:0px; padding-right:15px; padding-bottom:15px;"><font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:400; text-align:left; font-size:14pt;line-height:16pt; color:#009dd9;"><a href="<%= non_lead_article.article_url %>" target="_blank" style="COLOR: #009dd9; text-decoration: none;"><%=non_lead_article.title %></a></font> <br />
                                   <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:11pt;line-height:17pt; color:#666666;"><%=non_lead_article.description %></font></td>
                               </tr>
                               <tr>
                                 <td class="LeftPad" style="padding-left:20px; padding-top:0px; padding-right:15px; padding-bottom:0px;"><!--button-->
                                   <table class="TableWidthBut" align="left" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
-                                      <td class="CellWidthMiddle ButtonCenter" style="padding-bottom:5px; padding-left: 15px; padding-right: 15px; padding-top:5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="http://sites.nielsen.com/newscenter/tapping-into-todays-digitally-engaged-grocery-shopper/" target="_blank" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%=non_lead_article.cta %> ></a></font></td>
+                                      <td class="CellWidthMiddle ButtonCenter" style="padding-bottom:5px; padding-left: 15px; padding-right: 15px; padding-top:5px;  background-color:#009dd9;"><font class="ButtonCenter" style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:center; font-size:12pt; line-height:normal; color:#ffffff;  text-decoration: none; "><a href="<%=non_lead_article.article_url %>" target="_blank" class="cta" style="COLOR: #ffffff; text-decoration: none;"><%=non_lead_article.cta %> ></a></font></td>
                                     </tr>
                                   </table>
                                   <!--button--></td>

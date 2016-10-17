@@ -927,7 +927,26 @@ body {
         
       </table></td>
   </tr>
+
+
+
+
+
+
+
   
+  <!-- BEGINS ITERATION OVER MAIN ARTICLE IN GIVEN NEWSLETTER IF EXISTS -->
+
+    <% if(lead_article[0] === undefined){ %>
+        <% console.log("No Main Article"); %>
+    <% } else { %>
+        <% console.log("Main Article: " + lead_article[0].title) %>
+
+
+
+
+
+
 
   <!--FEATURED ARTICLE START-->
   <tr>
@@ -968,7 +987,7 @@ body {
   <!--FEATURED ARTICLE END--> 
 
 
-
+  <%  } %>
 
 
 
@@ -1095,6 +1114,17 @@ body {
 
 
 
+  <!-- BEGINS ITERATION OVER EVENT ARTICLE IN GIVEN NEWSLETTER IF EXISTS -->
+
+    <% if(event[0] === undefined){ %>
+        <% console.log("No Main Article"); %>
+    <% } else { %>
+        <% console.log("Main Article: " + event[0].title) %>
+
+
+
+
+
    
   <!--SECTION TITLE GRAY EVENT START-->
   <tr>
@@ -1132,9 +1162,34 @@ body {
        <br><br>
       <!-- <br /> -->
       <font style="font-family: Calibri, Arial, Helvetica, sans-serif; font-weight:normal; text-align:left; font-size:13pt;line-height:17pt; color:#666666;">
+
+
+
+<!-- INSERT EVENT DETAILS IF EXISTS -->
+
+    <% if(event[0].event_date.length === 0){ %>
+        <% console.log("No EVENT DETAILS"); %>
+    <% } else { %>
+        <% console.log("EVENT DETAILS: " + event[0].event_date) %>
+
+
+
+
        <b>Date: </b><%= event[0].event_date %><br>
         <b>Time: </b><%= event[0].event_time %><br>
     <!-- <b>Duration: </b>1 hour<br> -->
+
+
+
+<!-- INSERT EVENT DETAILS IF EXISTS -->
+    <% } %>
+
+
+
+
+
+
+
     
     <p><%= event[0].description %></p>
 <!--     <p>In this webinar you'll learn:</p>
@@ -1165,6 +1220,22 @@ body {
   </tr>  
   <!--ARTICLE GRAY EVENT END--> 
   
+
+
+
+
+
+
+  <!-- ENDS ITERATION OVER EVENT ARTICLE IN GIVEN NEWSLETTER IF EXISTS -->
+
+    <% }; %>
+
+
+
+
+
+
+
  
   <!--MORE NEWS START-->
   
