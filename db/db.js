@@ -3,7 +3,7 @@ const pry      = require('pryjs');
 
 const pgConfig = {  host: process.env.PG_HOST,
                     port: process.env.PG_PORT,
-                    database: 'newsletter_generator',
+                    database: 'newsletter_generator' || "dfoofjdadd5nmm",
                     user:process.env.PG_USER,
                     password: process.env.PG_PASSWORD };
 
