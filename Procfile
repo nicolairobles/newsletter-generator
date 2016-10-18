@@ -1,4 +1,4 @@
-npm install
-psql -d newsletter_generator -f db/schema.sql
-psql -d newsletter_generator -f db/seeds.sql
-node app.js
+web: npm install
+web: psql -d newsletter_generator -f db/schema.sql
+web: psql -d newsletter_generator -f db/seeds.sql
+web: node app.js
