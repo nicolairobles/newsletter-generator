@@ -1,5 +1,4 @@
-{
-  "name": "newsletter-generator",
+{ "name": "newsletter-generator",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -18,5 +17,8 @@
     "path": "^0.12.7",
     "pg-promise": "^5.1.0",
     "pryjs": "^1.0.2"
+  },
+  "engines": {
+    "node": "6.4.0"
   }
 }
