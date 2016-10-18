@@ -30,6 +30,6 @@ app.listen(port, () => {
   console.log('Server is listening on port ', port);
 })
 
-process.on('uncaughtException', function (err) {
-    console.log(err);
-}); 
+// process.on('uncaughtException', function (err) {
+//     console.log(err);
+// }); 
